@@ -11,7 +11,7 @@ function Freebook() {
   useEffect(() => {
     const getBook = async () => {
       try {
-        const res = await axios.get("http://localhost:4001/book");
+        const res = await axios.get("https://book-backend-h0be.onrender.com/book");
         const data = res.data.filter((data) => data.category === "Free");
         setBook(data);
       } catch (error) {
@@ -25,47 +25,47 @@ function Freebook() {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 3, // desktop
+    slidesToShow: 3,
     slidesToScroll: 3,
-    initialSlide: 0,
     responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 3, slidesToScroll: 3 } }, // large desktop
-      { breakpoint: 1024, settings: { slidesToShow: 1, slidesToScroll: 1 } }, // tablet
-      { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }, // mobile
-    ],
+      { breakpoint: 1280, settings: { slidesToShow: 3, slidesToScroll: 3 } },
+      { breakpoint: 1024, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+      { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+    ]
   };
 
-  // Gap wrapper style with responsive inline style
   const getSlideStyle = () => {
     const width = window.innerWidth;
-    let gap = 12; // default gap
-    if (width >= 1280) gap = 90; // large desktop
-    else if (width >= 1024) gap = 20; // tablet
-    else gap = 8; // mobile
+    let gap = 12;
+    if (width >= 1280) gap = 90;
+    else if (width >= 1024) gap = 20;
+    else gap = 8;
+
     return {
       padding: `0 ${gap}px`,
-      boxSizing: "border-box",
+      boxSizing: "border-box"
     };
   };
 
-  // Slider container negative margin to compensate wrapper padding
   const getSliderContainerStyle = () => {
     const width = window.innerWidth;
-    let margin = 12; // default
+    let margin = 12;
     if (width >= 1280) margin = 24;
     else if (width >= 1024) margin = 16;
     else margin = 8;
+
     return { margin: `0 -${margin}px` };
   };
 
   return (
     <div className="max-w-screen-2xl container mx-auto md:px-20 px-4">
+
       <div className="mb-6">
-        <h1 className="font-semibold text-xl pb-2">Free Offered Courses</h1>
+        <h1 className="font-semibold text-xl pb-2">Free Offered Books</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           Accusantium veritatis alias pariatur ad dolor repudiandae eligendi
-          corporis nulla non suscipit, iure neque earum?
+          corporis nulla non suscipit.
         </p>
       </div>
 
@@ -80,6 +80,7 @@ function Freebook() {
           ))}
         </Slider>
       </div>
+
     </div>
   );
 }
